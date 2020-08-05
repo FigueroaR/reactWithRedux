@@ -30,7 +30,7 @@ class App extends React.Component {
       return <SeasonDisplay latitude={this.state.lat}/>
     }
 
-    return <div><Spiner/> </div>
+    return <Spiner/>
     
   }
 }

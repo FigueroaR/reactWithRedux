@@ -4,7 +4,7 @@ const Spinner = () => {
     return (
         
             <div class="ui active dimmer">
-                <div class="ui massive text loader">Loading</div>
+                <div class="ui massive text loader">... Loading ...</div>
             </div>
            
         
