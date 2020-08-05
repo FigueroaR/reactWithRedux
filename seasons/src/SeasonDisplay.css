@@ -10,6 +10,13 @@
     right: 10px;
 }
 
+.season-display.winter i {
+    color: lightblue
+}
+
+.season-display.summer i {
+    color: orangered;
+}
 
 .season-display {
     display: flex;
