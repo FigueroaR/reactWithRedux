@@ -19,18 +19,23 @@ class App extends React.Component {
     console.log("DID UPDATE")
   }
 
+  renderContent () {
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div>Error: {this.state.errorMessage}</div>
+      }
+  
+      if (!this.state.errorMessage && this.state.lat) {
+        return <SeasonDisplay latitude={this.state.lat}/>
+      }
+  
+      return <Spiner message="Please accept location request"/>
+  }
+
   // React sasys we have to define Render!!!
   render() {
-
-    if (this.state.errorMessage && !this.state.lat) {
-    return <div>Error: {this.state.errorMessage}</div>
-    }
-
-    if (!this.state.errorMessage && this.state.lat) {
-      return <SeasonDisplay latitude={this.state.lat}/>
-    }
-
-    return <Spiner message="Please accept location request"/>
+    return (<div className='border red'>
+      {this.renderContent()}
+    </div>)
     
   }
 }
