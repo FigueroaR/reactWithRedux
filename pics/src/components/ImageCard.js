@@ -7,6 +7,19 @@ class ImageCard extends React.Component {
         this.imageRef = React.createRef();
     }
 
+    // this our way of grabing the image tag after it shows on DOM as HTML
+    componentDidMount() {
+        console.log('comp did mount', this.imageRef.current.clientHeight)
+        // error avoiding by listening only for twhen the image loads
+        this.imageRef.current.addEventListener('load', this.setSpans)
+    }
+
+    setSpans = () => {
+        console.log('spans', this.imageRef.current.clientHeight)
+
+
+    };
+
     render () {
 
         // destructuring
