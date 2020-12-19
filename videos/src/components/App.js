@@ -9,6 +9,11 @@ class App extends React.Component {
 
     state = {videos: [], selectedVideo: null}
 
+    // when app loads, this is the automatic search term
+    componentDidMount() {
+        this.onTermSubmit('cats')
+    }
+
     onTermSubmit = async (term) => {
         const response = await youtube.get('/search', {
             params: {
@@ -16,7 +21,11 @@ class App extends React.Component {
             }
         })
 
-        this.setState({videos: response.data.items})
+        this.setState({
+            videos: response.data.items,
+            //get the first video from the sesrch (response) 
+            selectedVideo: response.data.items[0]
+        })
     }
 
     onVideoSelect = (video) => {
