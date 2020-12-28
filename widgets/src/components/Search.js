@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 const Search = () => {
 const [term, setTerm] = useState('')
@@ -10,7 +11,11 @@ const [term, setTerm] = useState('')
 // nothing : initial render and rerender 
 // array with data : initial R, rerender , and rerender if data change 
 useEffect(() => {
-    console.log("logging effect")
+    const search = async () => {
+        await axios.get('')
+    }
+    
+    search();
 }, [term])
 
     return (
