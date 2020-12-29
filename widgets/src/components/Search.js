@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 const Search = () => {
-const [term, setTerm] = useState('')
+const [term, setTerm] = useState('programming')
 const [results, setResults] = useState([]);
 
 // we configure useEffect to be used on first render, rerender, or change
@@ -28,6 +28,19 @@ useEffect(() => {
         search()
 }, [term])
 
+const renderedResults = results.map((result) => {
+    return (
+        <div key={result.pageid} className='item'>
+            <div className='content'>   
+                <div className='header'>
+                    {result.title}
+                </div>
+                {result.snippet}
+            </div>
+        </div>
+    )
+})
+
     return (
         <div>
             <div className="ui form">
@@ -40,7 +53,7 @@ useEffect(() => {
                 </div>
                 
             </div>
-
+            <div className='ui celled list'>{renderedResults}</div>
         </div>
     )
 }
