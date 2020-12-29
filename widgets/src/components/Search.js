@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const Search = () => {
 const [term, setTerm] = useState('')
+const [results, setResults] = useState([]);
 
 // we configure useEffect to be used on first render, rerender, or change
 // we can add a second argument like array
@@ -12,10 +13,19 @@ const [term, setTerm] = useState('')
 // array with data : initial R, rerender , and rerender if data change 
 useEffect(() => {
     const search = async () => {
-        await axios.get('')
+        const {data} = await axios.get(`https://en.wikipedia.org/w/api.php`, {
+            params: {
+                action: 'query',
+                list: 'search',
+                origin: '*',
+                format: 'json',
+                srsearch: term
+            }
+        })
+        setResults(data.query.search)
     }
-    
-    search();
+
+        search()
 }, [term])
 
     return (
