@@ -28,6 +28,7 @@ useEffect(() => {
         search()
 }, [term])
 
+// we set dangerouslySetInnerHTML={{__html: result.snippet}} inside <span>
 const renderedResults = results.map((result) => {
     return (
         <div key={result.pageid} className='item'>
@@ -35,7 +36,8 @@ const renderedResults = results.map((result) => {
                 <div className='header'>
                     {result.title}
                 </div>
-                {result.snippet}
+                <span dangerouslySetInnerHTML={{__html: result.snippet}}></span>
+
             </div>
         </div>
     )
