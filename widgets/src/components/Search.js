@@ -3,14 +3,20 @@ import axios from 'axios'
 
 const Search = () => {
 const [term, setTerm] = useState('programming')
+const [debouncedTerm, setDebouncedTerm] = useState(term)
 const [results, setResults] = useState([]);
 
-// we configure useEffect to be used on first render, rerender, or change
-// we can add a second argument like array
 
-// array : initial render 
-// nothing : initial render and rerender 
-// array with data : initial R, rerender , and rerender if data change 
+useEffect(() => {
+    const timerId = setTimeout( () => {
+        setDebouncedTerm(term)
+    }, 1000)
+
+    return () => {
+        clearTimeout(timerId)
+    }
+}, [term])
+
 useEffect(() => {
     const search = async () => {
         const {data} = await axios.get(`https://en.wikipedia.org/w/api.php`, {
@@ -19,27 +25,21 @@ useEffect(() => {
                 list: 'search',
                 origin: '*',
                 format: 'json',
-                srsearch: term
+                srsearch: debouncedTerm
             }
         })
         setResults(data.query.search)
-    }
+    };
+    search();
+}, [debouncedTerm])
 
-    if (term && !results.length) {
-        search();
-    } else {
-        const timeoutId = setTimeout(() => {
-            if (term) {
-                    search()
-                }
-        }, 1000)
-    
-        return () => {
-            clearTimeout(timeoutId)
-        }
-    }
-        
-}, [term])
+// we configure useEffect to be used on first render, rerender, or change
+// we can add a second argument like array
+
+// array : initial render 
+// nothing : initial render and rerender 
+// array with data : initial R, rerender , and rerender if data change 
+
 
 // we set dangerouslySetInnerHTML={{__html: result.snippet}} inside <span>
 const renderedResults = results.map((result) => {
