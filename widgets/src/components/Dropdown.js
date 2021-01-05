@@ -7,13 +7,21 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
 
     useEffect(() => {
         
-        document.body.addEventListener('click', (event) => {
+    const onBodyClick =  (event) => {
             //// .contains function works on all DOMS
         if (ref.current && ref.current.contains(event.target)) {
             return;
         }
+
         setOpen(false);
-        });
+        }
+
+        document.body.addEventListener('click', onBodyClick)
+
+        // we return a clean up function
+        return () => {
+            document.body.removeEventListener('click', onBodyClick)
+        }
     }, []);
 
     const renderedOptions = options.map((option) => {
