@@ -9,11 +9,11 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         
     const onBodyClick =  (event) => {
             //// .contains function works on all DOMS
-        if (ref.current && ref.current.contains(event.target)) {
-            return;
-        }
+            if (ref.current && ref.current.contains(event.target)) {
+                return;
+            }
 
-        setOpen(false);
+            setOpen(false);
         }
 
         document.body.addEventListener('click', onBodyClick)
@@ -40,7 +40,6 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         );
     });
 
-    console.log(ref.current)
     return (
     <div ref={ref} className="ui form">
         <div className="field">
