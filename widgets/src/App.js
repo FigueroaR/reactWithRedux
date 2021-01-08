@@ -4,6 +4,7 @@ import Dropdown from './components/Dropdown';
 import Search from './components/Search';
 import Translate from './components/Translate'
 import Route from './components/Route'
+import Header from './components/Header'
 
 
 const items = [
@@ -42,6 +43,7 @@ export default () => {
     // when we send component inside route, it becomes a child (children)
     return (
         <div>
+            <Header />
             <Route path='/'> <Accordion items={items}/> </Route>
             <Route path='/list'> <Search /> </Route>
             <Route path='/dropdown'> <Dropdown 
@@ -51,7 +53,8 @@ export default () => {
                                         onSelectedChange={setSelected}
                                         /> 
                                     </Route>
-            <Route path='/trasnalte'> <Translate/> </Route>
+            <Route path='/translate'> <Translate/> </Route>
+            
         </div>
     ) 
 }
