@@ -3,6 +3,7 @@ import Accordion from './components/Accordion';
 import Dropdown from './components/Dropdown';
 import Search from './components/Search';
 import Translate from './components/Translate'
+import Route from './components/Route'
 
 
 const items = [
@@ -35,61 +36,22 @@ const options = [
     }
 ];
 
-// dropdown
-// export default () => {
-//     const [selected, setSelected] = useState(options[0])
-//     const [showDropdown,  setShowDropdown] = useState(true)
-//     return (
-//         <div>
-//             <button onClick={() => setShowDropdown(!showDropdown)} >
-//                 Toggle Drowpdown
-//             </button>
-//             {showDropdown ? (
-//                 <Dropdown 
-//                 onSelectedChange={setSelected}
-//                 selected={selected} 
-//                 options={options}
-//                 />) : null 
-//             }
-             
-//         </div>
-//     ) 
-// }
-
-const showAccordion = () => {
-    if (window.location.pathname === "/") {
-        return <Accordion items={items}/>
-    } 
-}
-
-const showList = () => {
-    if (window.location.pathname === "/list") {
-        return <Search/>
-    }
-}
-
-const showDropdown = () => {
-    if (window.location.pathname === "/dropdown") {
-        return <Dropdown options={options}/>
-    }
-}
-
-const showTranslate = () => {
-    if (window.location.pathname === "/translate") {
-        return <Translate/>
-    }
-}
-
-
-//trasnalte
 export default () => {
-    
+    const [selected, setSelected] = useState(options[0])
+
+    // when we send component inside route, it becomes a child (children)
     return (
         <div>
-            {showAccordion()}
-            {showList()}
-            {showDropdown()}
-            {showTranslate()}
+            <Route path='/'> <Accordion items={items}/> </Route>
+            <Route path='/list'> <Search /> </Route>
+            <Route path='/dropdown'> <Dropdown 
+                                        options={options}
+                                        label='select a color'
+                                        selected={selected}
+                                        onSelectedChange={setSelected}
+                                        /> 
+                                    </Route>
+            <Route path='/trasnalte'> <Translate/> </Route>
         </div>
     ) 
 }
