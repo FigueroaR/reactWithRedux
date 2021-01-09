@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 
-const SearchBar = ({onFormSubmit}) => {
+const SearchBar = ({onTermSubmit}) => {
     const [term, setTerm] = useState('')
 
     const onSubmit = (event) => {
         event.preventDefault();
         // TODO MAKESURE WE DO CALLBACK FROM PARENT COMP
-        onFormSubmit(term)
+        onTermSubmit(term)
     }
 
     return (
