@@ -5,17 +5,17 @@ import jsonPlaceholder from '../apis/jsonPlaceholder';
 //to make a request in our actions creator
 
 
-export const fetchPostsandUsers = () => async dispatch => {
-    console.log('about to fetch')
+export const fetchPostsandUsers = () => async (dispatch, getState )=> {
     await dispatch(fetchPosts());
-    console.log('fetched posts')
+    const userIds = _.uniq(_.map(getState().posts, 'userId'));
+    userIds.forEach(id => dispatch(fetchUser(id)));
 }
+
 export const fetchPosts = () => async dispatch => {
     // we access axios with a .get request
     const response = await jsonPlaceholder.get('/posts')
 
     dispatch({type: 'FETCH_POSTS', payload: response.data})
-    
 }
 
 export const fetchUser = (id) => async dispatch => {
