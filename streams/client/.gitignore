@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# key
+<script scr="https://apis.google.com/js/api.js"></script>
+399340029985-v3s8le2l1jbrl7cfe063hgnh9letgrp6.apps.googleusercontent.com
