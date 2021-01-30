@@ -50,8 +50,8 @@ class GoogleAuth extends React.Component {
   }
 
   onSignInClick = () => {
-    this.auth.signIn()
-  }
+    this.auth.signIn({prompt:'select_account'});
+};
 
   onSignOutClick = () => {
     this.auth.signOut()
