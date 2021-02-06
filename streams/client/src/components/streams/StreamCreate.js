@@ -3,11 +3,13 @@ import {clearSubmitErrors, Field, formValues, reduxForm} from 'redux-form';
 
 class  StreamCreate extends React.Component {
 
-    renderInput({ input, label }) {
+    renderInput({ input, label, meta }) {
+        console.log(meta)
         return (
         <div className="field">
             <label>{label}</label>
             <input {...input}/>
+            <div>{meta.error}</div>
         </div>
         )
     }
@@ -29,20 +31,21 @@ class  StreamCreate extends React.Component {
 }
 
 const validate = (formValues) => {
-    const errors = { }
+    const error = { }
 
     if (!formValues.title) {
-        errors.title = 'Enter title!';
+        error.title = 'Enter title!';
     }
 
     if (!formValues.description) {
-        errors.description = 'Enter description!';
+        error.description = 'Enter description!';
     }
 
-    return errors;
+    return error;
 }
 
 
 export default reduxForm({
-    form: 'streamCreate'
+    form: 'streamCreate',
+    validate,
 })(StreamCreate);
