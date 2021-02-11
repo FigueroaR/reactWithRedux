@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 export default (state = {} , action ) => {
     switch (action.type) {
-        case FETCH_STREAM:
+        case FETCH_STREAMS:
             // we are mappin this array into objects
             return {...state, ..._.mapKeys(action.payload, 'id')}
         case CREATE_STREAM:
