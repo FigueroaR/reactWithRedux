@@ -1,4 +1,6 @@
 import React from 'react'
+import UserCreate from './UserCreate';
+import userCreate from './UserCreate'
 
 
 class App extends React.Component {
@@ -17,7 +19,7 @@ class App extends React.Component {
                 <i className="flag us" onClick={() => this.onLanguageChange('english')}></i>
                 <i className="flag nl" onClick={() => this.onLanguageChange('dutch')}></i>
             </div>
-            {this.state.language}
+            <UserCreate/>
         </div>)
     }
 }
